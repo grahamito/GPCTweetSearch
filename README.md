@@ -3,12 +3,19 @@
 search twitter and load results into tableview
 
 ## To install
-From command line
+
+### From command line
 
 ```code
 $ git clone https://github.com/grahamito/GPCTweetSearch.git
 $ cd GPCTweetSearch
 $ pod install
+```
+### From xcode or in Finder
+
+open project workspace 
+```objectivec
+Peek Buzz.xcworkspace
 ```
 
 ## Current Status
