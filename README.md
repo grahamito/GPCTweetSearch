@@ -49,7 +49,8 @@ Peek Buzz.xcworkspace
 
 Based on photomania from Stanford Ios programming course http://web.stanford.edu/class/cs193p/cgi-bin/drupal/
 This algorithm had to be adapted to work with twitter api, and to do paging of gets (cursoring).
-In particular it uses CoreDataTableViewController with is a subclass of UITableViewController, that incorporates Apple's recommendations of how to use coredata and a UITableview Controller.
+
+In particular the project uses CoreDataTableViewController which is a subclass of UITableViewController, that incorporates Apple's recommendations on how to use coredata with a UITableview.
  
  ```objectivec
  Fires off a block on a queue to to get authorization for twitter.
