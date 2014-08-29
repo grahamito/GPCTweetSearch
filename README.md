@@ -7,7 +7,7 @@ From command line
 
 ```code
 $ git clone https://github.com/grahamito/GPCTweetSearch.git
-in command line cd to project directory
+$ cd GPCTweetSearch
 $ pod install
 ```
 
