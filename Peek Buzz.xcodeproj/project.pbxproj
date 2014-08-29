@@ -146,14 +146,12 @@
 		8424F82E19A806D7002581F5 /* Peek Buzz */ = {
 			isa = PBXGroup;
 			children = (
-				8424F84319A806D7002581F5 /* Images.xcassets */,
-				8424F83D19A806D7002581F5 /* Main_iPad.storyboard */,
-				8424F83A19A806D7002581F5 /* Main_iPhone.storyboard */,
-				848B575719AE960A00A1581D /* Managers */,
+				84E25E0819B0DAC900DFF5FC /* Storyboard */,
 				848B575819AE964900A1581D /* Model */,
+				8424F88519AB0E1B002581F5 /* ViewControllers */,
+				848B575719AE960A00A1581D /* Managers */,
 				8424F82F19A806D7002581F5 /* Supporting Files */,
 				848B575619AE91DB00A1581D /* Utility */,
-				8424F88519AB0E1B002581F5 /* ViewControllers */,
 			);
 			path = "Peek Buzz";
 			sourceTree = "<group>";
@@ -161,6 +159,7 @@
 		8424F82F19A806D7002581F5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8424F84319A806D7002581F5 /* Images.xcassets */,
 				8420192A19AC26F900265A76 /* Podfile */,
 				8424F83719A806D7002581F5 /* GPCAppDelegate.h */,
 				8424F83819A806D7002581F5 /* GPCAppDelegate.m */,
@@ -234,6 +233,15 @@
 				848B575919AE9E2D00A1581D /* TwitterBuzz.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		84E25E0819B0DAC900DFF5FC /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8424F83D19A806D7002581F5 /* Main_iPad.storyboard */,
+				8424F83A19A806D7002581F5 /* Main_iPhone.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
