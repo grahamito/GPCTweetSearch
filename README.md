@@ -47,6 +47,8 @@ Peek Buzz.xcworkspace
  
 ## Basic algorithm
 
+Based on photomania from Stanford Ios programming course http://web.stanford.edu/class/cs193p/cgi-bin/drupal/
+This algorithm had to be adapted to work with twitter api, and to do paging of gets (cursoring) 
  
  ```objectivec
  Fires off a block on a queue to to get authorization for twitter.
