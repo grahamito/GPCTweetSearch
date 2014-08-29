@@ -10,38 +10,6 @@ git clone this project
 in command line cd to project directory
 $ pod install
 ```
-## Sample Data Received from Twitter Api:
-
- see https://dev.twitter.com/docs/api/1.1/get/search/tweets
- 
-## Parameters sent to twitter
-
- 
-```objectivec
-twitter params: {
- count = 15;
- "include_entities" = false;
- q = "@peek";
- "result_type" = "@recent";
- }
- ```
- 
-## search_metadata Dictionary Returned From Twitter
-
- ```objectivec
- search_metadata: {
- "completed_in" = "0.023";
- count = 15;
- "max_id" = 505207116643061761;
- "max_id_str" = 505207116643061761;
- "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
- query = "%40cnn";
- "refresh_url" = "?since_id=505207116643061761&q=%40cnn&result_type=%40recent";
- "since_id" = 0;
- "since_id_str" = 0;
- }
- ```
- 
  
 ## Basic algorithm
 
@@ -81,3 +49,36 @@ twitter params: {
   if it doesnt
    insert it
   ``` 
+
+## Sample Data Received from Twitter Api:
+
+ see https://dev.twitter.com/docs/api/1.1/get/search/tweets
+ 
+## Parameters sent to twitter
+
+ 
+```objectivec
+twitter params: {
+ count = 15;
+ "include_entities" = false;
+ q = "@peek";
+ "result_type" = "@recent";
+ }
+ ```
+ 
+## search_metadata Dictionary Returned From Twitter
+
+ ```objectivec
+ search_metadata: {
+ "completed_in" = "0.023";
+ count = 15;
+ "max_id" = 505207116643061761;
+ "max_id_str" = 505207116643061761;
+ "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
+ query = "%40cnn";
+ "refresh_url" = "?since_id=505207116643061761&q=%40cnn&result_type=%40recent";
+ "since_id" = 0;
+ "since_id_str" = 0;
+ }
+ ```
+ 
