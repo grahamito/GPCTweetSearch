@@ -1,17 +1,14 @@
-GPCTweetSearch
-==============
+#GPCTweetSearch
 
 search twitter and load results into tableview
 
 
-Sample Data Received from Twitter Api:
---------------------------------------
+## Sample Data Received from Twitter Api:
 
  see https://dev.twitter.com/docs/api/1.1/get/search/tweets
  
-Parameters sent to twitter
---------------------------
- 
+## Parameters sent to twitter
+
  
 ```objectivec
 twitter params: {
@@ -22,8 +19,8 @@ twitter params: {
  }
  ```
  
-search_metadata Dictionary Returned From Twitter
-------------------------------------------------
+## search_metadata Dictionary Returned From Twitter
+
  ```objectivec
  search_metadata: {
  "completed_in" = "0.023";
@@ -39,9 +36,8 @@ search_metadata Dictionary Returned From Twitter
  ```
  
  
- Basic algorithm
- ---------------
- 
+## Basic algorithm
+
  
  ```objectivec
  Fires off a block on a queue to to get authorization for twitter.
@@ -55,20 +51,20 @@ search_metadata Dictionary Returned From Twitter
   Data is loaded into Core Data by calling tweetWithApiObject:inManagedObjectContext: category method.
  ```
  
- Paging
- ------
- 
+##  Paging
+
  The data from twitter includes meta_data which contains next_results
  ```objectivec
  "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
  program extracts max_id from this, and passes it back to twitter on subsequent calls. 
  ```
- Loading of images
- -----------------
+
+## Loading of images
+ 
  Done asynchronously with third party library SDWebImage
  
- Insert into coredata
- ---------------------
+## Insert into coredata
+
  Done naively. 
  
  ```objectivec
