@@ -22,7 +22,7 @@ twitter params: {
  
 search_metadata Dictionary Returned From Twitter
 ------------------------------------------------
- ``` objectivec
+ ```objectivec
  search_metadata: {
  "completed_in" = "0.023";
  count = 15;
@@ -35,11 +35,13 @@ search_metadata Dictionary Returned From Twitter
  "since_id_str" = 0;
  }
  ```
+ 
+ 
  Basic algorithm
  ===============
  
- ''' objectivec
-  Fires off a block on a queue to to get authorization for twitter.
+ ```objectivec
+ Fires off a block on a queue to to get authorization for twitter.
  
   When authorized,  getTweet asynchronously ,
        they are returned in an array of tweet dictionaries
@@ -48,12 +50,12 @@ search_metadata Dictionary Returned From Twitter
     self.managedObjectContext's proper queue (using performBlock:).
  
   Data is loaded into Core Data by calling tweetWithApiObject:inManagedObjectContext: category method.
- '''
+ ```
  
  Paging
  ------
  The data from twitter includes meta_data which contains next_results
- ``` objectivec
+ ```objectivec
  "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
  program extracts max_id from this, and passes it back to twitter on subsequent calls. 
  ```
