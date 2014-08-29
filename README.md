@@ -59,7 +59,7 @@ In particular the project uses CoreDataTableViewController which is a subclass o
        they are returned in an array of tweet dictionaries
  
   The tweet dictionaries are loaded into Core Data by posting a block to do so on
-    self.managedObjectContext's proper queue (using performBlock:).
+    self.managedObjectContexts proper queue (using performBlock:).
  
   Data is loaded into Core Data by calling tweetWithApiObject:inManagedObjectContext: category method.
  ```
