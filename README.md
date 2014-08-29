@@ -26,17 +26,19 @@ Paging has been coded but needs to be debugged
 (No retweet)
 
 ## Other issues
-Code to prevent simultaneous fetches needs to be debugged
-Image sizes in tableview display oddly need code to fix size, or change placeholder image
+- Code to prevent simultaneous fetches needs to be debugged
+- Image sizes in tableview display oddly need code to fix size, or change placeholder image
 
-Check we don’t need a separate managedObjectContext for inserts
+-Check we don’t need a separate managedObjectContext for inserts
+
 (app uses  UIManagedDocument for core data)
 
-Needs check for memory management
-Check for memory leaks
-Memory management for blocks needs to be checked
-     may need __block and weak self     
-      in places where variables are updated within blocks 
+####Needs check for memory management
+- Check for memory leaks
+
+####Memory management for blocks needs to be checked
+-     may need __block and weak self     
+-      in places where variables are updated within blocks 
  
 ## Basic algorithm
 
