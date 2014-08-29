@@ -6,7 +6,7 @@ search twitter and load results into tableview
 From command line
 
 ```code
-git clone this project
+git clone https://github.com/grahamito/GPCTweetSearch.git
 in command line cd to project directory
 $ pod install
 ```
