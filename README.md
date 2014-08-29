@@ -21,16 +21,13 @@ Peek Buzz.xcworkspace
 ## Current Status
 
 ### Basic status
-Initial Authorization, and Fetch from Twitter works
-
-Tweets are loaded into tableview
-For debugging, cell currently shows tweetId instead of tweet Username
-
-Refresh works by performing the fetch again
-
-Paging has been coded but needs to be debugged
-
-(No retweet)
+- Initial Authorization, and Fetch from Twitter works
+- Tweets are loaded into tableview
+- For debugging, cell currently shows tweetId instead of tweet Username
+- Refresh works by performing the fetch again
+- Paging has been coded but needs to be debugged
+- ios7 only (not ios6)
+- (No retweet)
 
 ## Other issues
 - Code to prevent simultaneous fetches needs to be debugged
