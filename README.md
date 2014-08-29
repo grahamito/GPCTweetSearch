@@ -28,6 +28,7 @@ Peek Buzz.xcworkspace
 - Paging has been coded but needs to be debugged
 - ios7 only (not ios6)
 - (No retweet)
+- For testing, searches for "@BarackObama" (very frequent new tweets)
 
 ## Other issues
 - Code to prevent simultaneous fetches needs to be debugged
