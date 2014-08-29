@@ -9,8 +9,8 @@ Sample Data Received from Twitter Api:
 
  see https://dev.twitter.com/docs/api/1.1/get/search/tweets
  
- Parameters sent to twitter
- --------------------------
+Parameters sent to twitter
+--------------------------
  
  
 ```objectivec
@@ -69,4 +69,12 @@ search_metadata Dictionary Returned From Twitter
  
  Insert into coredata
  ---------------------
- Done naively
+ Done naively. 
+ 
+ ```objectivec
+ loop through array of tweet Dicts returned from twitter fetch
+ for each tweet
+  see if it exists already in coredata
+  if it doesnt
+   insert it
+  ``` 
