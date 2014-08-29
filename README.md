@@ -2,7 +2,14 @@
 
 search twitter and load results into tableview
 
+## To install
+From command line
 
+```code
+git clone this project
+in command line cd to project directory
+$ pod install
+```
 ## Sample Data Received from Twitter Api:
 
  see https://dev.twitter.com/docs/api/1.1/get/search/tweets
