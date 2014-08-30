@@ -25,7 +25,7 @@ Peek Buzz.xcworkspace
 - Tweets are loaded into tableview
 - For debugging, cell currently shows tweetId instead of tweet Username
 - Refresh works by performing the fetch again
-- Paging is working
+- Paging is sort of working, but results are much fewer than when using twitter mac os x program, so maybe our app is using wrong params or the wrong twitter API
 - ios7 only (not ios6)
 - (No retweet)
 - For testing, searches for "@BarackObama" (very frequent new tweets)
