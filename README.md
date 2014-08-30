@@ -37,12 +37,11 @@ Peek Buzz.xcworkspace
 
 (app uses  UIManagedDocument for core data)
 
-####Needs check for memory management
-- Check for memory leaks
+- Needs check for memory management
+Check for memory leaks
 
-####Memory management for blocks needs to be checked
--     may need __block and weak self     
--      in places where variables are updated within blocks 
+## Suggested Improvements
+App stores tweets in core data db, so, on startup, we don't need to get previously stored tweets from twitter api again. 
  
 ## Basic algorithm
 
