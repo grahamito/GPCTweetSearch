@@ -2,21 +2,28 @@
 
 search twitter and load results into tableview
 
-## To install
+### To install
 
-### From command line
+From the command line
 
 ```code
 $ git clone https://github.com/grahamito/GPCTweetSearch.git
 $ cd GPCTweetSearch
 $ pod install
 ```
-### From xcode or in Finder
 
-open project workspace 
+### To Open Xcode Project
+From xcode, or in the Finder, open project workspace 
 ```objectivec
 Peek Buzz.xcworkspace
 ```
+
+### Debugging using NSLogger
+- If you don't have it, Download  pre-built version of the NSLogger desktop viewer for OS X.
+https://www.dropbox.com/s/zt1eyfgymc9fbak/NSLogger-1.2.zip
+
+- Setup your Mac OS username in NSLogger Desktop Viewer
+Preferneces -> Network. Fill in the Bonjour Service Name, with the name of the account you are logged into on your Mac
 
 ## Current Status
 
