@@ -7,6 +7,8 @@
 //  Graham Conway - added refresh control
 
 #import "CoreDataTableViewController.h"
+#import <NSLogger/NSLogger.h>
+
 
 @interface CoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;

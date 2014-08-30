@@ -1,70 +1,15 @@
 //
 //  TweetCDTVC
 //
-//
+// Main View Controller For App
 
-/***
- Sample Data Received from Twitter Api:
-==============
- 
- see https://dev.twitter.com/docs/api/1.1/get/search/tweets
- 
- Parameters sent to twitter
- --------------------------
- twitter params: {
- count = 15;
- "include_entities" = false;
- q = "@peek";
- "result_type" = "@recent";
- }
- 
- 
-search_metadata Dictionary Returned From Twitter
-------------------------------------------------
- 
- search_metadata: {
- "completed_in" = "0.023";
- count = 15;
- "max_id" = 505207116643061761;
- "max_id_str" = 505207116643061761;
- "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
- query = "%40cnn";
- "refresh_url" = "?since_id=505207116643061761&q=%40cnn&result_type=%40recent";
- "since_id" = 0;
- "since_id_str" = 0;
- }
- 
- Basic algorithm
- ===============
- 
- * Fires off a block on a queue to to get authorization for twitter.
- *
- * When authorized,  getTweet asynchronously ,
- *      they are returned in an array of tweet dictionaries
- *
- * The tweet dictionaries are loaded into Core Data by posting a block to do so on
- *   self.managedObjectContext's proper queue (using performBlock:).
- *
- * Data is loaded into Core Data by calling tweetWithApiObject:inManagedObjectContext: category method.
- 
- 
- Paging
- ------
- The data from twitter includes meta_data which contains next_results
- "next_results" = "?max_id=505206494791356415&q=%40cnn&result_type=%40recent";
- program extracts max_id from this, and passes it back to twitter on subsequent calls. 
- 
- Loading of images
- -----------------
- Done asynchronously with third party library SDWebImage
- 
- Insert into coredata
- ---------------------
- Done naively,
+/**
+ see project readme.md file for notes on algorith
 ***/
 
 #import "TweetCDTVC.h"
 
+#import <NSLogger/NSLogger.h>
 #import "GPCUtility.h"
 #import "GPCTwitterAccountManager.h"
 @import Social;     // Twitter and Facebook
@@ -78,13 +23,16 @@ search_metadata Dictionary Returned From Twitter
 
 #pragma mark - Constants that define twitter search
 //static NSString *const kPeekTwitterName = @"@peek";
-//static NSString *const kPeekTwitterName = @"@cnn";
 static NSString *const kPeekTwitterName = @"@BarackObama";
 
+// Number of tweets to ask for from Twitter API, max 100
 static int const gpcTweetsPerTwitterRequest = 15;
 
+//ask for next batch of tweets from twitter API when this number of rows left in UITableView
+static NSUInteger gpckTableViewPrefetchAmount = (NSUInteger) gpcTweetsPerTwitterRequest / 2  ;
+
 // size of fetch of coredata records from disk to memory
-static NSUInteger gpcCoreFetchDataBatchSize = (NSUInteger) gpcTweetsPerTwitterRequest * 3;
+//static NSUInteger gpcCoreFetchDataBatchSize = (NSUInteger) gpcTweetsPerTwitterRequest;
 
 
 #pragma mark - General Constants
@@ -304,6 +252,8 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
                               withCount:(NSInteger)tweetsPerRequest
                                  olderThanId:(NSNumber *)maxTweetId
 {
+
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.refreshControl beginRefreshing];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; //not great
@@ -315,6 +265,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     [self.twitterAccountManager authTwitterWithSuccess:^{
         
         // (This completion handler happens on arbitrary queue)
+        LoggerApp(1, @"after call to auth: maxTweetId = %@", maxTweetId);
         
         /// Get a batch of tweets from twitter
         [self getTweetsContaining:searchString
@@ -322,6 +273,9 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
                            olderThanId:(NSNumber *)maxTweetId
                        completion:^(NSArray *tweetArray, NSDictionary *requestMetaData)
          {
+             // save the id of the last tweet retreived from this request. (so we can pass it as param to next request)
+             self.oldestTweetId = [self extractNextMaxIdFromQueryString:requestMetaData[@"next_results"]];
+
              // we have an array of tweets load them into coredata
              // start coredata operation from main queue
              
@@ -335,7 +289,6 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
                      }
                      dispatch_async(dispatch_get_main_queue(), ^{
                          [self.managedObjectContext save:NULL];
-                         self.oldestTweetId = [self extractNextMaxIdFromQueryString:requestMetaData[@"next_results"]];
                          
                          self.twitterFetchInProgress = NO;
                          [self.refreshControl endRefreshing];
@@ -367,7 +320,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
                  completion:(void (^)(NSArray *tweetArray, NSDictionary *requestMetaData))completion
 {
     // (This could be on an arbitrary queue)
-    
+    LoggerView(1, @"getTweets, maxTweetId = %@", maxTweetId);
     // Create a request
     SLRequest *twitterGetRequest = [self.twitterAccountManager requestForSearchString:searchString
                                       tweetsPerRequest:tweetsPerRequest
@@ -386,10 +339,10 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
              arrayOfTweetDicts = [jsonResponseDict valueForKeyPath:@"statuses"];
              searchMetaData = [jsonResponseDict valueForKeyPath:@"search_metadata"];
              
-//             NSLog(@"twitterGetRequest: tweet Array: %@\nsearch_metadata: %@", arrayOfTweetDicts, searchMetaData  );
+//             LoggerView(1, @"twitterGetRequest: tweet Array: %@\nsearch_metadata: %@", arrayOfTweetDicts, searchMetaData  );
          }
          else {
-             NSLog(@"There was an error performing twitter request: %@", [error localizedDescription]);
+             LoggerView(1, @"There was an error performing twitter request: %@", [error localizedDescription]);
          }
          completion(arrayOfTweetDicts, searchMetaData);
      }];
@@ -407,7 +360,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
 **/
 - (NSNumber *)extractNextMaxIdFromQueryString:(NSString *)queryString
 {
-    NSLog(@"extractNextMaxIdFromNextResultsUrl, nextResltsString = %@", queryString);
+    LoggerView(1, @"extractNextMaxIdFromNextResultsUrl, nextResltsString = %@", queryString);
 
     if (!queryString) return nil;
     
@@ -429,7 +382,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
  
     NSString *maxIdString = queryStringDictionary[@"max_id"];
     
-    NSLog(@"extractNextMaxIdFromNextResultsUrl, maxId = %@", maxIdString);
+    LoggerView(1, @"extractNextMaxIdFromNextResultsUrl, maxId = %@", maxIdString);
 
     if (maxIdString)  {
         return [GPCUtility nsnumberFromLargeIntString:maxIdString];
@@ -468,24 +421,26 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // update UILabels in the UITableViewCell
-//    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
+    //    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
     cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.tweetIdString];
-
+    
     cell.detailTextLabel.text = tweet.tweetText;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@=%@) %@",tweet.tweetId, tweet.tweetIdString, tweet.tweetText];
-
+    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@=%@) %@",tweet.tweetId, tweet.tweetIdString, tweet.tweetText];
+    
     [cell.imageView sd_setImageWithURL:tweet.profileImageURL
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     // check if we are near the end of the tableview
-    {
-        // Get index of the  row in fetchResults controller
-        NSInteger indexOfLastRowOfDataInSection = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.section] numberOfObjects];
-        
-        // trigger fetch just before..
-        if (indexPath.row  == indexOfLastRowOfDataInSection - 2) {
-            [self getNextBatchOfTweetsFromServer];
-        }
+    // Get index of the  row in fetchResults controller
+    NSInteger indexOfLastRowOfDataInSection = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.section] numberOfObjects];
+    NSInteger indexWhenToAskForMoreRows = indexOfLastRowOfDataInSection - gpckTableViewPrefetchAmount;
+    
+    LoggerView(1, @"tableview:currentIdx: %d lastrow = %ld, ask for more at %ld", indexPath.row, (long)indexOfLastRowOfDataInSection, (long)indexWhenToAskForMoreRows);
+    
+    
+    // trigger fetch just before..
+    if (indexPath.row  ==  indexWhenToAskForMoreRows) {
+        [self getNextBatchOfTweetsFromServer];
     }
     return cell;
 }

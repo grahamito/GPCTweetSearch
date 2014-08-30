@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Accounts/Accounts.h>
+#import <NSLogger/NSLogger.h>
+
 @import Social;
 
 typedef NS_ENUM(NSInteger, TwitterAuthorizationStatus)  {

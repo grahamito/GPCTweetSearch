@@ -8,6 +8,7 @@
 
 #import "GPCTwitterAccountManager.h"
 #import <Accounts/Accounts.h>
+#import <NSLogger/NSLogger.h>
 
 static NSString *const kGPCResult_type = @"@recent";
 
@@ -94,7 +95,7 @@ static NSString *const kGPCResult_type = @"@recent";
                  self.twitterAccount = [accounts firstObject];
                  /*If you wish to see the username of the account being used uncomment out the next line of code
                  */
-                 NSLog(@"Username: %@", self.twitterAccount.username);
+                 LoggerView(1, @"Username: %@", self.twitterAccount.username);
              }
          }
          // update instance variable and pass status to completionblock
@@ -113,6 +114,7 @@ static NSString *const kGPCResult_type = @"@recent";
                      tweetsPerRequest:(NSInteger)tweetsPerRequest
                           olderThanId:(NSNumber *)maxTweetId;
 {
+    LoggerView(1, @"request for search string maxTweetId = %@", maxTweetId);
     NSURL *timelineURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/search/tweets.json"];
     
     NSString *tweetsPerRequestString = [NSString stringWithFormat:@"%ld",(long)tweetsPerRequest];
@@ -123,12 +125,13 @@ static NSString *const kGPCResult_type = @"@recent";
     
     // if asking to return tweets older (> = ) maxTweetId: add max_id to params
     if (maxTweetId) {
-        NSString *maxTweetsIdString = [NSString stringWithFormat:@"%ld",(long)maxTweetId];
+        NSString *maxTweetsIdString = [maxTweetId stringValue];
+//        [NSString stringWithFormat:@"%ld",(long)maxTweetId];
+        LoggerView(1, @"maxTweetId Param string %@", maxTweetsIdString);
         twitterParams[@"max_id"] = maxTweetsIdString;
     }
     
-#warning remove for production
-    NSLog(@"twitter params: %@", twitterParams);
+    LoggerView(1, @"twitter params: %@", twitterParams);
     
     // Create a request
     SLRequest *twitterGetRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter

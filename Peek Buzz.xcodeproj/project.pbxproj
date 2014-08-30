@@ -66,15 +66,15 @@
 		8424F85419A806D7002581F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8424F85619A806D7002581F5 /* Peek_BuzzTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Peek_BuzzTests.m; sourceTree = "<group>"; };
 		8424F87219A96AAE002581F5 /* GPCTwitterAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPCTwitterAccountManager.h; path = ../GPCTwitterAccountManager.h; sourceTree = "<group>"; };
-		8424F87319A96AAE002581F5 /* GPCTwitterAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPCTwitterAccountManager.m; path = ../GPCTwitterAccountManager.m; sourceTree = "<group>"; };
+		8424F87319A96AAE002581F5 /* GPCTwitterAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = GPCTwitterAccountManager.m; path = ../GPCTwitterAccountManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8424F87B19AAB822002581F5 /* GPCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPCUtility.h; path = ../GPCUtility.h; sourceTree = "<group>"; };
-		8424F87C19AAB822002581F5 /* GPCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPCUtility.m; path = ../GPCUtility.m; sourceTree = "<group>"; };
+		8424F87C19AAB822002581F5 /* GPCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = GPCUtility.m; path = ../GPCUtility.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8424F87E19AADCB5002581F5 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HTML.h"; path = "../NSString+HTML.h"; sourceTree = "<group>"; };
 		8424F87F19AADCB5002581F5 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HTML.m"; path = "../NSString+HTML.m"; sourceTree = "<group>"; };
 		8424F88119AADCC1002581F5 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = ../GTMDefines.h; sourceTree = "<group>"; };
 		8424F88219AADCC1002581F5 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "../GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		8424F88319AADCC1002581F5 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "../GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		848B575319AE914F00A1581D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		848B575319AE914F00A1581D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CoreDataTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		848B575419AE914F00A1581D /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		848B575A19AE9E2D00A1581D /* TwitterBuzz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TwitterBuzz.xcdatamodel; sourceTree = "<group>"; };
 		848B576219AEA34800A1581D /* Tweet+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+Helpers.h"; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -512,7 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
