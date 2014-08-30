@@ -31,7 +31,6 @@ Peek Buzz.xcworkspace
 - For testing, searches for "@BarackObama" (very frequent new tweets)
 
 ## Other issues
-- Code to prevent simultaneous fetches needs to be debugged
 - Image sizes in tableview display oddly need code to fix size, or change placeholder image
 
 -Check we don’t need a separate managedObjectContext for inserts
