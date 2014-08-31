@@ -30,7 +30,6 @@ Preferneces -> Network. Fill in the Bonjour Service Name, with the name of the a
 ### Basic status
 - Initial Authorization, and Fetch from Twitter works
 - Tweets are loaded into tableview
-- For debugging, cell currently shows tweetId instead of tweet Username
 - Refresh works by performing the fetch again
 - Paging is sort of working, but results are much fewer than when using twitter mac os x program, so maybe our app is using wrong params or the wrong twitter API. Or maybe it's this already detected problem: "API v1.1 search/tweets truncating/limiting results.": https://dev.twitter.com/discussions/22571
 - ios7 only (not ios6)
@@ -40,15 +39,14 @@ Preferneces -> Network. Fill in the Bonjour Service Name, with the name of the a
 ## Other issues
 - Image sizes in tableview display oddly need code to fix size, or change placeholder image
 
--Check we don’t need a separate managedObjectContext for inserts
+-Check we don’t need a separate managedObjectContext for inserts. Seems to work fine, i think because we are using UIManagedDocument to setup the managedObjectContext, and that has two managedObjectContexts built into it.
 
-(app uses  UIManagedDocument for core data)
 
 - Needs check for memory management
 Check for memory leaks
 
 ## Suggested Improvements
-App stores tweets in core data db, so, on startup, we don't need to get previously stored tweets from twitter api again. 
+The App stores retrieved tweets in core data db, so, on startup, we don't need to re-get thesed previously stored tweets from twitter api.
  
 ## Basic algorithm
 
