@@ -5,7 +5,7 @@
 
 /**
  see project readme.md file for notes on algorith
-***/
+ ***/
 
 #import "TweetCDTVC.h"
 
@@ -26,7 +26,7 @@
 static NSString *const kPeekTwitterName = @"@BarackObama";
 
 // Number of tweets to ask for from Twitter API, max 100
-static int const gpcTweetsPerTwitterRequest = 15;
+static int const gpcTweetsPerTwitterRequest = 50;
 
 //ask for next batch of tweets from twitter API when this number of rows left in UITableView
 static NSUInteger gpckTableViewPrefetchAmount = (NSUInteger) gpcTweetsPerTwitterRequest / 2  ;
@@ -73,7 +73,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     _managedObjectContext = managedObjectContext;
     if (managedObjectContext) {
         [self setupFetchResultsController];
-
+        
     } else {
         self.fetchedResultsController = nil;
     }
@@ -156,12 +156,12 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     
     // this is batching for the transfer from coredata file system to coredata memory
     // not quite sure how this affects the data returned. turn it off till further testing.
-//    [request setFetchBatchSize:gpcCoreFetchDataBatchSize];
+    //    [request setFetchBatchSize:gpcCoreFetchDataBatchSize];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
-                                                                                       cacheName:nil];
+                                                                                   cacheName:nil];
 }
 
 #pragma mark - App Active Notification
@@ -219,15 +219,15 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
 - (IBAction)getFirstBatchOfTweetsFromServer
 {
     [self authorizeAndGetTweetsContaining:kPeekTwitterName
-                              withCount:gpcTweetsPerTwitterRequest
-                                 olderThanId:nil];
+                                withCount:gpcTweetsPerTwitterRequest
+                              olderThanId:nil];
 }
 
 - (IBAction)getNextBatchOfTweetsFromServer
 {
     [self authorizeAndGetTweetsContaining:kPeekTwitterName
                                 withCount:gpcTweetsPerTwitterRequest
-                                   olderThanId:self.oldestTweetId];
+                              olderThanId:self.oldestTweetId];
 }
 
 
@@ -250,14 +250,14 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
 
 - (void)authorizeAndGetTweetsContaining:(NSString *)searchString
                               withCount:(NSInteger)tweetsPerRequest
-                                 olderThanId:(NSNumber *)maxTweetId
+                            olderThanId:(NSNumber *)maxTweetId
 {
-
-
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.refreshControl beginRefreshing];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; //not great
-
+        
         self.twitterFetchInProgress = YES;
     });
     
@@ -270,12 +270,12 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
         /// Get a batch of tweets from twitter
         [self getTweetsContaining:searchString
                         withCount:(NSInteger)tweetsPerRequest
-                           olderThanId:(NSNumber *)maxTweetId
+                      olderThanId:(NSNumber *)maxTweetId
                        completion:^(NSArray *tweetArray, NSDictionary *requestMetaData)
          {
              // save the id of the last tweet retreived from this request. (so we can pass it as param to next request)
              self.oldestTweetId = [self extractNextMaxIdFromQueryString:requestMetaData[@"next_results"]];
-
+             
              // we have an array of tweets load them into coredata
              // start coredata operation from main queue
              
@@ -293,7 +293,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
                          self.twitterFetchInProgress = NO;
                          [self.refreshControl endRefreshing];
                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO; // not great
-
+                         
                      });
                  }];
              });
@@ -316,15 +316,15 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
  **/
 - (void)getTweetsContaining:(NSString *)searchString
                   withCount:(NSInteger)tweetsPerRequest
-                     olderThanId:(NSNumber *)maxTweetId
+                olderThanId:(NSNumber *)maxTweetId
                  completion:(void (^)(NSArray *tweetArray, NSDictionary *requestMetaData))completion
 {
     // (This could be on an arbitrary queue)
     LoggerView(1, @"getTweets, maxTweetId = %@", maxTweetId);
     // Create a request
     SLRequest *twitterGetRequest = [self.twitterAccountManager requestForSearchString:searchString
-                                      tweetsPerRequest:tweetsPerRequest
-                                                olderThanId:maxTweetId];
+                                                                     tweetsPerRequest:tweetsPerRequest
+                                                                          olderThanId:maxTweetId];
     // perform request
     [twitterGetRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error)
      {
@@ -339,7 +339,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
              arrayOfTweetDicts = [jsonResponseDict valueForKeyPath:@"statuses"];
              searchMetaData = [jsonResponseDict valueForKeyPath:@"search_metadata"];
              
-//             LoggerView(1, @"twitterGetRequest: tweet Array: %@\nsearch_metadata: %@", arrayOfTweetDicts, searchMetaData  );
+             //             LoggerView(1, @"twitterGetRequest: tweet Array: %@\nsearch_metadata: %@", arrayOfTweetDicts, searchMetaData  );
          }
          else {
              LoggerView(1, @"There was an error performing twitter request: %@", [error localizedDescription]);
@@ -350,18 +350,18 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
 
 
 /**
-* Extract MaxId from next_results
-* sample input string: 
-* "next_results" = "?max_id=505224929621843967&q=%40BarackObama&result_type=%40recent";
-*
-*  ;
-*
-*
-**/
+ * Extract MaxId from next_results
+ * sample input string:
+ * "next_results" = "?max_id=505224929621843967&q=%40BarackObama&result_type=%40recent";
+ *
+ *  ;
+ *
+ *
+ **/
 - (NSNumber *)extractNextMaxIdFromQueryString:(NSString *)queryString
 {
     LoggerView(1, @"extractNextMaxIdFromNextResultsUrl, nextResltsString = %@", queryString);
-
+    
     if (!queryString) return nil;
     
     NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
@@ -379,11 +379,11 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
         [queryStringDictionary setObject:value forKey:key];
     }
     
- 
+    
     NSString *maxIdString = queryStringDictionary[@"max_id"];
     
     LoggerView(1, @"extractNextMaxIdFromNextResultsUrl, maxId = %@", maxIdString);
-
+    
     if (maxIdString)  {
         return [GPCUtility nsnumberFromLargeIntString:maxIdString];
     }
@@ -405,7 +405,7 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     else {
         return inputString;
     }
-
+    
 }
 
 
@@ -421,8 +421,8 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // update UILabels in the UITableViewCell
-    //    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
-    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.tweetIdString];
+    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
+    //    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.tweetIdString];
     
     cell.detailTextLabel.text = tweet.tweetText;
     //    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@=%@) %@",tweet.tweetId, tweet.tweetIdString, tweet.tweetText];

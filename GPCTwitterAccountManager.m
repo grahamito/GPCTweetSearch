@@ -10,7 +10,24 @@
 #import <Accounts/Accounts.h>
 #import <NSLogger/NSLogger.h>
 
-static NSString *const kGPCResult_type = @"@recent";
+
+
+/* Twitter result_type from api doc: https://dev.twitter.com/docs/api/1.1/get/search/tweets
+ Optional. Specifies what type of search results you would prefer to receive. The current default is "mixed." Valid values include:
+* mixed: Include both popular and real time results in the response.
+* recent: return only the most recent results in the response
+* popular: return only the most popular results in the response.
+
+Example Values: mixed, recent, popular *?
+
+Mixed seems to work ok, even though there was an issue reported by twitter:
+ 
+ Twitter Issue #1208: Search API: Count param does not work when result type is set to mixed.
+ https://dev.twitter.com/issues/1208
+*/
+static NSString *const kGPCResult_type = @"@mixed";
+//static NSString *const kGPCResult_type = @"@recent";
+//static NSString *const kGPCResult_type = @"@mixed";
 
 
 @interface GPCTwitterAccountManager  () {
