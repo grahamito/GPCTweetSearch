@@ -46,9 +46,13 @@ Preferneces -> Network. Fill in the Bonjour Service Name, with the name of the a
 Check for memory leaks
 
 ## Suggested Improvements
+
 - Only get tweets we don't already have stored in local db. The App stores retrieved tweets in core data db, so, on startup, we don't need to re-get thesed previously stored tweets from twitter api.
+
 - For refresh, send the since_id to twitter. We can get this from the refresh_url that is returned by twitter 
 "refresh_url" = "?since_id=505207116643061761&q=%40cnn&result_type=%40recent";
+
+- Do bulk insert into coredata, instead of inserting a row at a time. 
 
 
  
