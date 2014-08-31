@@ -2,21 +2,28 @@
 
 search twitter and load results into tableview
 
-## To install
+### To install
 
-### From command line
+From the command line
 
 ```code
 $ git clone https://github.com/grahamito/GPCTweetSearch.git
 $ cd GPCTweetSearch
 $ pod install
 ```
-### From xcode or in Finder
 
-open project workspace 
+### To Open Xcode Project
+From xcode, or in the Finder, open project workspace 
 ```objectivec
 Peek Buzz.xcworkspace
 ```
+
+### Debugging using NSLogger
+- If you don't have it, Download  pre-built version of the NSLogger desktop viewer for OS X.
+https://www.dropbox.com/s/zt1eyfgymc9fbak/NSLogger-1.2.zip
+
+- Setup your Mac OS username in NSLogger Desktop Viewer
+Preferneces -> Network. Fill in the Bonjour Service Name, with the name of the account you are logged into on your Mac
 
 ## Current Status
 
@@ -25,25 +32,23 @@ Peek Buzz.xcworkspace
 - Tweets are loaded into tableview
 - For debugging, cell currently shows tweetId instead of tweet Username
 - Refresh works by performing the fetch again
-- Paging is working
+- Paging is sort of working, but results are much fewer than when using twitter mac os x program, so maybe our app is using wrong params or the wrong twitter API. Or maybe it's this already detected problem: "API v1.1 search/tweets truncating/limiting results.": https://dev.twitter.com/discussions/22571
 - ios7 only (not ios6)
 - (No retweet)
 - For testing, searches for "@BarackObama" (very frequent new tweets)
 
 ## Other issues
-- Code to prevent simultaneous fetches needs to be debugged
 - Image sizes in tableview display oddly need code to fix size, or change placeholder image
 
 -Check we don’t need a separate managedObjectContext for inserts
 
 (app uses  UIManagedDocument for core data)
 
-####Needs check for memory management
-- Check for memory leaks
+- Needs check for memory management
+Check for memory leaks
 
-####Memory management for blocks needs to be checked
--     may need __block and weak self     
--      in places where variables are updated within blocks 
+## Suggested Improvements
+App stores tweets in core data db, so, on startup, we don't need to get previously stored tweets from twitter api again. 
  
 ## Basic algorithm
 
