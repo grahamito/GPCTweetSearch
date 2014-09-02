@@ -454,14 +454,16 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
  *
  */
  
- #warning debug this: works on first load but not after scrolling or selecting
+ #warning need to debug this: works on first load but not after scrolling or selecting
  - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row%2 == 0) {
-        
-        UIColor *altCellColor = [UIColor colorWithWhite:0.7 alpha:0.1];
-        
-        cell.backgroundColor = altCellColor;
+
+        cell.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.1];
+
+    }
+    else {
+        cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
         
     }
     
