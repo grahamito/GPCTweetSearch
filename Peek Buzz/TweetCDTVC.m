@@ -14,6 +14,9 @@
 #import "GPCTwitterAccountManager.h"
 @import Social;     // Twitter and Facebook
 
+// Custom uitableview cell
+#import "GPCTweetTableViewCell.h"
+
 
 #import <SDWebImage/UIImageView+WebCache.h> // async loading of images into tableview cells
 
@@ -416,20 +419,17 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+    GPCTweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // update UILabels in the UITableViewCell
-    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
-    //    cell.textLabel.text = [NSString stringWithFormat:@"@%@",tweet.tweetIdString];
-    
-    cell.detailTextLabel.text = tweet.tweetText;
-    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%@=%@) %@",tweet.tweetId, tweet.tweetIdString, tweet.tweetText];
-    
-    [cell.imageView sd_setImageWithURL:tweet.profileImageURL
+    cell.userTwitterNameLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
+    cell.tweetTextLabel.text = tweet.tweetText;
+    [cell.tweetUserImageView sd_setImageWithURL:tweet.profileImageURL
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
+
     // check if we are near the end of the tableview
     // Get index of the  row in fetchResults controller
     NSInteger indexOfLastRowOfDataInSection = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.section] numberOfObjects];
@@ -437,12 +437,34 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     
     LoggerView(1, @"tableview:currentIdx: %d lastrow = %ld, ask for more at %ld", indexPath.row, (long)indexOfLastRowOfDataInSection, (long)indexWhenToAskForMoreRows);
     
-    
-    // trigger fetch just before..
+    // trigger fetch before we have displayed the last row that we have data for:
     if (indexPath.row  ==  indexWhenToAskForMoreRows) {
         [self getNextBatchOfTweetsFromServer];
     }
     return cell;
+}
+
+
+/***
+ * Alternating the background color of cells
+ *
+ *
+ * from Apple example 
+ * https://developer.apple.com/library/ios/documentation/userexperience/conceptual/TableView_iPhone/TableViewCells/TableViewCells.html
+ *
+ */
+ 
+ #warning debug this: works on first load but not after scrolling or selecting
+ - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row%2 == 0) {
+        
+        UIColor *altCellColor = [UIColor colorWithWhite:0.7 alpha:0.1];
+        
+        cell.backgroundColor = altCellColor;
+        
+    }
+    
 }
 
 #pragma mark - Navigation

@@ -32,6 +32,7 @@
 		848B576A19AEBC2A00A1581D /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B576919AEBC2A00A1581D /* Tweet.m */; };
 		848B576D19AEBFD000A1581D /* TweetCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 848B576C19AEBFD000A1581D /* TweetCDTVC.m */; };
 		8494A4F219AEE4CC00D88864 /* GPCTwitterAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8424F87319A96AAE002581F5 /* GPCTwitterAccountManager.m */; };
+		84A26A6E19B666CE00F114A9 /* GPCTweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A26A6D19B666CE00F114A9 /* GPCTweetTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		848B576919AEBC2A00A1581D /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		848B576B19AEBFD000A1581D /* TweetCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCDTVC.h; sourceTree = "<group>"; };
 		848B576C19AEBFD000A1581D /* TweetCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TweetCDTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		84A26A6C19B666CE00F114A9 /* GPCTweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPCTweetTableViewCell.h; sourceTree = "<group>"; };
+		84A26A6D19B666CE00F114A9 /* GPCTweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPCTweetTableViewCell.m; sourceTree = "<group>"; };
 		AE3FB4E0C42143B3B4D83AE5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +195,8 @@
 		8424F88519AB0E1B002581F5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84A26A6C19B666CE00F114A9 /* GPCTweetTableViewCell.h */,
+				84A26A6D19B666CE00F114A9 /* GPCTweetTableViewCell.m */,
 				848B576B19AEBFD000A1581D /* TweetCDTVC.h */,
 				848B576C19AEBFD000A1581D /* TweetCDTVC.m */,
 				848B575319AE914F00A1581D /* CoreDataTableViewController.m */,
@@ -379,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A26A6E19B666CE00F114A9 /* GPCTweetTableViewCell.m in Sources */,
 				8494A4F219AEE4CC00D88864 /* GPCTwitterAccountManager.m in Sources */,
 				848B575519AE914F00A1581D /* CoreDataTableViewController.m in Sources */,
 				8424F83519A806D7002581F5 /* main.m in Sources */,
