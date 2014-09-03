@@ -16,7 +16,7 @@
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tweetCell" rowHeight="156" id="Pm7-QI-1XG" customClass="GPCTweetTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="156"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pm7-QI-1XG" id="lRR-5e-0N6">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="1000" tableViewCell="Pm7-QI-1XG" id="lRR-5e-0N6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -29,7 +29,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweetUser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPD-Kd-8Xq">
-                                            <rect key="frame" x="20" y="8" width="293" height="20"/>
+                                            <rect key="frame" x="20" y="8" width="280" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="yPD-Kd-8Xq" secondAttribute="trailing" constant="7" id="5VO-EC-TNC"/>
+                                        <constraint firstAttribute="trailing" secondItem="yPD-Kd-8Xq" secondAttribute="trailing" constant="20" symbolic="YES" id="5VO-EC-TNC"/>
                                         <constraint firstAttribute="trailing" secondItem="7zu-L4-4k4" secondAttribute="trailing" constant="20" id="9MP-kM-uPd"/>
                                         <constraint firstItem="0Yu-zF-X5U" firstAttribute="top" secondItem="yPD-Kd-8Xq" secondAttribute="bottom" constant="10" id="KEg-gZ-0rF"/>
                                         <constraint firstItem="yPD-Kd-8Xq" firstAttribute="top" secondItem="lRR-5e-0N6" secondAttribute="top" constant="8" id="MmI-nU-UJ9"/>
