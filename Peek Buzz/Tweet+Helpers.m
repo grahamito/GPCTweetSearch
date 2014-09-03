@@ -10,6 +10,14 @@
 #import "GPCUtility.h"
 #import "NSString+HTML.h"
 
+/* See https://dev.twitter.com/docs/user-profile-images-and-banners
+ * for standard twitter profile image sizes:
+ * 
+ * normal 48 x 48
+ * bigger 73 x 73
+ 
+ */
+
 
 @implementation Tweet (Helpers)
 
@@ -24,6 +32,8 @@
         return nil;
     }
 }
+
+
 
 
 - (NSURL *)profileImageURL

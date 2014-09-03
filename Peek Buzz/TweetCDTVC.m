@@ -426,7 +426,11 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
     // update UILabels in the UITableViewCell
     cell.userTwitterNameLabel.text = [NSString stringWithFormat:@"@%@",tweet.twitterScreenName];
     cell.tweetTextLabel.text = tweet.tweetText;
-    [cell.tweetUserImageView sd_setImageWithURL:tweet.profileImageURL
+    
+    // for size of twitter profile images:
+    //https://dev.twitter.com/docs/user-profile-images-and-banners
+    // bigger = 73 x 73, 
+    [cell.tweetUserImageView sd_setImageWithURL:tweet.biggerImageURL
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
 
@@ -449,12 +453,12 @@ static NSString *const kStartIntakeSegueIdentifier = @"startIntakeSegue";
  * Alternating the background color of cells
  *
  *
- * from Apple example 
+ * adapted from Apple example (added else clause to if 
+ * statement)
  * https://developer.apple.com/library/ios/documentation/userexperience/conceptual/TableView_iPhone/TableViewCells/TableViewCells.html
- *
+ 
  */
  
- #warning need to debug this: works on first load but not after scrolling or selecting
  - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row%2 == 0) {

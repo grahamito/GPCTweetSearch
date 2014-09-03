@@ -8,35 +8,50 @@
         <scene sceneID="4eC-op-ZN9">
             <objects>
                 <tableViewController id="c7l-Xq-NZw" customClass="TweetCDTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="22" sectionFooterHeight="22" id="wVS-JF-UZH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="156" sectionHeaderHeight="22" sectionFooterHeight="22" id="wVS-JF-UZH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tweetCell" rowHeight="122" id="Pm7-QI-1XG" customClass="GPCTweetTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="122"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tweetCell" rowHeight="156" id="Pm7-QI-1XG" customClass="GPCTweetTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pm7-QI-1XG" id="lRR-5e-0N6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Yu-zF-X5U">
-                                            <rect key="frame" x="20" y="49" width="63" height="55"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Yu-zF-X5U">
+                                            <rect key="frame" x="20" y="40" width="73" height="73"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="73" id="aq1-Xh-Pn8"/>
+                                                <constraint firstAttribute="width" constant="73" id="gUA-hQ-usS"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tweetUser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPD-Kd-8Xq">
-                                            <rect key="frame" x="20" y="20" width="287" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tweetUser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPD-Kd-8Xq">
+                                            <rect key="frame" x="20" y="8" width="293" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 " lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-L4-4k4">
-                                            <rect key="frame" x="91" y="40" width="216" height="76"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" misplaced="YES" text="1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="199" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-L4-4k4">
+                                            <rect key="frame" x="101" y="40" width="199" height="95"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="yPD-Kd-8Xq" secondAttribute="trailing" constant="7" id="5VO-EC-TNC"/>
+                                        <constraint firstAttribute="trailing" secondItem="7zu-L4-4k4" secondAttribute="trailing" constant="20" id="9MP-kM-uPd"/>
+                                        <constraint firstItem="0Yu-zF-X5U" firstAttribute="top" secondItem="yPD-Kd-8Xq" secondAttribute="bottom" constant="10" id="KEg-gZ-0rF"/>
+                                        <constraint firstItem="yPD-Kd-8Xq" firstAttribute="top" secondItem="lRR-5e-0N6" secondAttribute="top" constant="8" id="MmI-nU-UJ9"/>
+                                        <constraint firstItem="yPD-Kd-8Xq" firstAttribute="leading" secondItem="lRR-5e-0N6" secondAttribute="leading" constant="20" id="Xab-lv-V9k"/>
+                                        <constraint firstItem="7zu-L4-4k4" firstAttribute="top" secondItem="0Yu-zF-X5U" secondAttribute="top" id="aMe-Wj-qW5"/>
+                                        <constraint firstAttribute="centerX" secondItem="7zu-L4-4k4" secondAttribute="centerX" constant="-40.5" id="kLr-X8-U3z"/>
+                                        <constraint firstItem="7zu-L4-4k4" firstAttribute="leading" secondItem="0Yu-zF-X5U" secondAttribute="trailing" constant="8" id="mp5-jl-Oal"/>
+                                        <constraint firstAttribute="bottom" secondItem="yPD-Kd-8Xq" secondAttribute="bottom" constant="127" id="vBn-db-SIP"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tweetTextLabel" destination="7zu-L4-4k4" id="zGR-2N-cR7"/>
